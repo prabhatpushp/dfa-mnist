@@ -73,7 +73,7 @@ The implementation combines theoretical foundations of computational theory with
   - [x] Add batch statistics visualization
   - [x] Create data distribution analysis plots
 
-## 2. Core Genetic Algorithm Framework Development
+## 2.1. Core Genetic Algorithm Framework Development
 
 **User Story**: As a machine learning engineer, I need a robust genetic algorithm framework to evolve automata-based solutions for MNIST digit recognition.
 
@@ -137,7 +137,7 @@ The implementation combines theoretical foundations of computational theory with
   - [ ] Implement diversity metrics (gene variance, unique solutions)
   - [ ] Create visualization utilities for accuracy progression
 
-## 2. Deterministic Finite Automaton (DFA) Implementation
+## 2.2. Deterministic Finite Automaton (DFA) Implementation
 
 **User Story**: As a machine learning researcher, I need a DFA implementation that can be evolved using genetic algorithms to recognize patterns in sequential data.
 
