@@ -137,50 +137,62 @@ The implementation combines theoretical foundations of computational theory with
   - [ ] Implement diversity metrics (gene variance, unique solutions)
   - [ ] Create visualization utilities for accuracy progression
 
-## 2.2. Deterministic Finite Automaton (DFA) Implementation
+## 2.2. Deterministic Finite Automaton (DFA) Implementation for MNIST
 
-**User Story**: As a machine learning researcher, I need a DFA implementation that can be evolved using genetic algorithms to recognize patterns in sequential data.
+**User Story**: As a machine learning researcher, I need a DFA implementation that can process MNIST images using pixel values as input symbols and classify digits through state transitions, with optional chunk-based processing.
 
-**Acceptance Criteria**: A DFA class that can be encoded as a chromosome, evaluated against training data, and evolved to improve pattern recognition accuracy.
+**Acceptance Criteria**: A DFA class that uses NumPy matrices for efficient state transitions, processes both full images and chunked image data, maintains multiple final states for digit classification, and can be evolved using genetic algorithms.
 
 ### Subtasks:
 
-- [ ] **Implement DFA class**
-  - [ ] Define state representation with unique identifiers
-  - [ ] Create alphabet of input symbols
-  - [ ] Implement transition function as mapping from (state, symbol) to next state
-  - [ ] Define start state and set of accept states
-  - [ ] Create input processing method that follows transitions
+- [ ] **Implement DFA class with NumPy Matrix Processing**
+  - [ ] Define state types as NumPy constants (INITIAL=0, FINAL=1, TRANSITION=2, DEAD=3)
+  - [ ] Create pixel value ranges as NumPy arrays for input alphabet
+  - [ ] Implement transition matrix as np.ndarray(shape=(n_states, 256))
+  - [ ] Define start state and final states matrix (10, n_states) for digit classification
+  - [ ] Create NumPy-based counter system for final state entries
+  - [ ] Add vectorized chunk processing using np.split and np.mean
+  - [ ] Implement efficient state tracking using NumPy masks
 
 - [ ] **Create DFA chromosome encoding**
-  - [ ] Design encoding scheme for transition table
-  - [ ] Encode accept states as part of chromosome
-  - [ ] Implement conversion from chromosome to DFA
-  - [ ] Ensure all chromosomes represent valid DFAs
+  - [ ] Design NumPy-based encoding for transition matrix
+  - [ ] Encode final states using binary NumPy arrays
+  - [ ] Include chunk parameters (size, stride) in chromosome
+  - [ ] Implement vectorized chromosome to DFA conversion
+  - [ ] Add NumPy-based validation for state transitions
+  - [ ] Create efficient chunk processing flags using NumPy
 
 - [ ] **Implement DFA-specific genetic operators**
-  - [ ] Create mutation operator for modifying transitions
-  - [ ] Design mutation for adding/removing accept states
-  - [ ] Implement crossover to exchange transition subsets between DFAs
-  - [ ] Ensure genetic operations maintain DFA validity
+  - [ ] Create vectorized mutation for transition matrix
+  - [ ] Design NumPy-based final state mutation
+  - [ ] Implement matrix-wise crossover operations
+  - [ ] Add vectorized chunk parameter evolution
+  - [ ] Ensure validity using NumPy boolean operations
+  - [ ] Optimize genetic operations with NumPy broadcasting
 
 - [ ] **Create DFA fitness evaluation**
-  - [ ] Implement accuracy calculation on positive examples
-  - [ ] Implement accuracy calculation on negative examples
-  - [ ] Add complexity penalty to favor simpler automata
-  - [ ] Normalize fitness scores for consistent selection pressure
+  - [ ] Implement vectorized full image processing
+  - [ ] Add efficient chunk-based processing using np.lib.stride_tricks
+  - [ ] Calculate classification scores using NumPy operations
+  - [ ] Aggregate chunk scores using np.mean and np.argmax
+  - [ ] Add vectorized complexity penalties
+  - [ ] Implement parallel processing for batch evaluation
 
-- [ ] **Implement DFA minimization**
-  - [ ] Implement Hopcroft's algorithm for DFA minimization
-  - [ ] Create function to remove unreachable states
-  - [ ] Add option to apply minimization during evolution
-  - [ ] Measure impact of minimization on performance
+- [ ] **Implement DFA optimization**
+  - [ ] Optimize transition matrix using NumPy operations
+  - [ ] Remove redundant states using boolean masking
+  - [ ] Implement transition caching with NumPy arrays
+  - [ ] Create vectorized optimization strategies
+  - [ ] Profile and optimize memory usage
+  - [ ] Add NumPy-based state compression
 
 - [ ] **Create DFA visualization**
-  - [ ] Generate state diagram visualization with labeled transitions
-  - [ ] Implement tracing functionality for input processing
-  - [ ] Create comparison visualizations between evolved and target DFAs
-  - [ ] Add export options for diagrams (SVG, PNG)
+  - [ ] Generate transition matrix heatmaps using plt.imshow
+  - [ ] Visualize chunk processing patterns with NumPy arrays
+  - [ ] Create state activation heatmaps using np.histogram2d
+  - [ ] Add matplotlib-based export options
+  - [ ] Visualize final state distributions with np.histogram
+  - [ ] Create animated transitions using NumPy state sequences
 
 ## 3. Non-deterministic Finite Automaton (NFA) Implementation
 
