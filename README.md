@@ -23,7 +23,7 @@ Traditional machine learning approaches often rely on complex neural networks th
 ### Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/dfa-mnist.git
+   git clone https://github.com/prabhatpushp/dfa-mnist
    cd dfa-mnist
    ```
 
